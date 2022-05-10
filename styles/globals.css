@@ -75,6 +75,7 @@ a {
 .stack {
   display: flex; 
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .stack > * + * {
@@ -97,6 +98,13 @@ a {
   margin-left: 0;
 }
 
+.center-all {
+  display: flex;
+}
+.center-all > * {
+  text-align: center;
+  justify-content: center;
+}
 .flex-1 {
   flex: 1
 }
@@ -106,6 +114,11 @@ a {
   max-width: 100%;
 }
 
+.button {
+  cursor: pointer;
+  background: var(--gray);
+  border: 1px solid var(--black);
+}
 input {
   all: unset;
 }

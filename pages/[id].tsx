@@ -1,22 +1,21 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Oracle from '../components/oracle'
-import { getRandomExercise } from '../lib/exercises'
+import ExercisePageInternal from '../components/exercisePageInternal'
 
-const Home: NextPage = () => {
+const ExercisePage: NextPage = () => {
   
   return (
     <div >
       <Head>
-        <title>exercises for two</title>
+        <title>exercise</title>
       </Head>
-
       <main className="padded">
-        <Oracle/>
+        <ExercisePageInternal/>
       </main>
     </div>
   )
 }
 
-export default Home
+
+export default ExercisePage
