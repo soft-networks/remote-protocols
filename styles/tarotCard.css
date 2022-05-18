@@ -22,10 +22,8 @@
   position: absolute;
    backface-visibility: hidden;
   -moz-backface-visibility: hidden;
+  
 
 }
 
-.tarotCard .contentContainer.front {
-  transform: rotateY(180deg);
-}
 
