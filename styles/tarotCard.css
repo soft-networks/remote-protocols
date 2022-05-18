@@ -5,10 +5,12 @@
   width: calc(var(--cardHeight) /  var(--aspect));
   position: relative;
   perspective: var(--cardHeight);
+  box-shadow: 0px 0px var(--s0) var(--gray);
 }
 
 .tarotCard .contentContainer {
   background: var(--white);
+  border-radius: 6px;
   position: relative;
   top: 0;
   left: 0;
@@ -23,11 +25,7 @@
 
 }
 
-.tarotCard .contentContainer.back.rotate, .tarotCard .contentContainer.front {
+.tarotCard .contentContainer.front {
   transform: rotateY(180deg);
 }
 
-
-.tarotCard .contentContainer.front.rotate {
-  transform:  rotateY(360deg);
-}

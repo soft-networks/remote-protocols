@@ -1,5 +1,7 @@
 import classNames from "classnames";
 import { useState } from "react";
+import { useSpring, animated, config } from 'react-spring'
+
 
 interface exerciseProps {
   exercise: Exercise;
@@ -11,23 +13,27 @@ interface exerciseProps {
 const ExerciseCard: React.FunctionComponent<exerciseProps> = ({ exercise, share }) => {
 
   const [flipCard, setflipCard] = useState(false);
+
+  const cardSpringProps = {config:  {mass: 0.1, tension: 200, friction: 5}};
+  const mainProps = useSpring({ to: {opacity: 1}, from: {opacity: 0}})
+  const rotateProps = useSpring({to: { transform: 'rotateY(180deg) scale(1.1)'} , from: { transform: 'rotateY(360deg)'}, ...cardSpringProps})
+  const rotatePropsReverse = useSpring({to: { transform: 'rotateY(0deg) scale(1.1)'} , from: { transform: 'rotateY(180deg)'}, ...cardSpringProps})
   
   return (
-    <div className="tarotCard" onClick={ e => setflipCard(!flipCard)}>
-    <div className={classNames('contentContainer padded stack border front', { rotate: flipCard})}>
-        <div className="caption"> {exercise.name} </div>
-        <div className="flex-1"> {exercise.text} </div>
-        <div className="align-end horizontal-stack fullWidth">
-          <span> {ratingRenderer("🌸", exercise.rating.intimacy)} </span>
-          <span> {ratingRenderer("🕑", exercise.rating.effort)} </span>
-        </div>
-      </div>
-      <div className={classNames('contentContainer padded stack border back',  { rotate: flipCard})}>
+    <animated.div className="tarotCard" onClick={ e => setflipCard(!flipCard)} >
+      <animated.div className={'contentContainer padded stack border front'}  style={flipCard ? rotateProps : {}}>
+          <div className="caption"> {exercise.name} </div>
+          <div className="flex-1"> {exercise.text} </div>
+          <div className="align-end horizontal-stack fullWidth">
+            <span> {ratingRenderer("🌸", exercise.rating.intimacy)} </span>
+            <span> {ratingRenderer("🕑", exercise.rating.effort)} </span>
+          </div>
+        </animated.div>
+      <animated.div className={'contentContainer padded stack border back'} style={flipCard ? rotatePropsReverse : {}}>
         <div> card back</div>
-      </div>
-      
+      </animated.div>
       {share && shareButton(exercise)}
-    </div>
+    </animated.div>
   );
 };
 
