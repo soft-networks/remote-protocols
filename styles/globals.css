@@ -13,7 +13,7 @@
   --s-4: calc(var(--s-3) / var(--ratio));
   --s-5: calc(var(--s-4) / var(--ratio));
 
-  --spacing: var(--s0);
+  --spacing: var(--s1);
   --stackSpacing: var(--s0);
 
   --gray: #eeeeee;
@@ -21,8 +21,16 @@
   --white: white;
   --contrast: yellow;
   
+  
 }
 
+html, body, main , #__next{
+  width: 100%; height: 100%;
+}
+
+body {
+  background: var(--gray);
+}
 
 * {
   box-sizing: border-box;
@@ -38,6 +46,22 @@ a {
   background-color: var(--contrast);
 }
 
+.tarotCard {
+  --aspect: 1.72;
+  --cardHeight: 60vh;
+  height: var(--cardHeight);
+  width: calc(var(--cardHeight) /  var(--aspect));
+}
+
+.tarotCard .contentContainer {
+  background: var(--white);
+}
+.noEvents {
+  pointer-events: none;
+}
+.hasEvents {
+  pointer-events: all;
+}
 
 .padded {
   padding: var(--spacing);
@@ -45,12 +69,15 @@ a {
 .padded\:s1 {
   padding: var(--s1);
 }
+.marginTop {
+  margin-top:  var(--spacing);
+}
 .border {
   border: 1px solid var(--black);
 }
 .fullBleed {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .fullHeight {
   height: 100%;
@@ -62,6 +89,9 @@ a {
 .whiteFill {
   background: var(--white);
 }
+.contrastFill {
+  background: var(--contrast);
+}
 
 .caption {
   font-size: var(--s-1);
@@ -72,10 +102,17 @@ a {
 .noOverflowX {
   overflow: hidden;
 }
+.hide {
+  display: none;
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .stack {
   display: flex; 
   flex-direction: column;
-  justify-content: flex-start;
 }
 
 .stack > * + * {
@@ -89,7 +126,9 @@ a {
 .horizontal-stack {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
+
 
 .horizontal-stack > * + * {
   margin-left: var(--stackSpacing);
@@ -98,27 +137,17 @@ a {
   margin-left: 0;
 }
 
-.center-all {
-  display: flex;
-}
-.center-all > * {
-  text-align: center;
-  justify-content: center;
-}
 .flex-1 {
   flex: 1
 }
 
+
 .narrow {
-  width: calc( 46ch - 2 * var(--spacing));
+  width: calc(50ch - 2 * var(--spacing));
   max-width: 100%;
+  z-index: 2;
 }
 
-.button {
-  cursor: pointer;
-  background: var(--gray);
-  border: 1px solid var(--black);
-}
 input {
   all: unset;
 }

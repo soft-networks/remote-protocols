@@ -1,0 +1,33 @@
+.tarotCard {
+  --aspect: 1.72;
+  --cardHeight: 60vh;
+  height: var(--cardHeight);
+  width: calc(var(--cardHeight) /  var(--aspect));
+  position: relative;
+  perspective: var(--cardHeight);
+}
+
+.tarotCard .contentContainer {
+  background: var(--white);
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  position: absolute;
+   backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+
+}
+
+.tarotCard .contentContainer.back.rotate, .tarotCard .contentContainer.front {
+  transform: rotateY(180deg);
+}
+
+
+.tarotCard .contentContainer.front.rotate {
+  transform:  rotateY(360deg);
+}

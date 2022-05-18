@@ -4,14 +4,20 @@ import ExerciseCard from "./exerciseCard";
 
 const ExercisePageInternal: React.FC = () => {
   const { query, isReady } = useRouter()
-
-  if (!isReady) {
-    return <div> Loading</div>
-  }
   
   const eid = query.id as string
   const exercise = getExerciseByID(eid as string);
-  return exercise ? <ExerciseCard exercise={exercise} share/> : <div>No exercise found</div>;
+  return (
+    <div className="center fullBleed">
+      {!isReady ? (
+        <div>Loading</div>
+      ) : exercise ? (
+        <ExerciseCard exercise={exercise} />
+      ) : (
+        <div> Exercise not found </div>
+      )}
+    </div>
+  );
 };
 
 export default ExercisePageInternal;

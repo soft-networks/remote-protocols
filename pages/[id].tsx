@@ -6,14 +6,13 @@ import ExercisePageInternal from '../components/exercisePageInternal'
 const ExercisePage: NextPage = () => {
   
   return (
-    <div >
+    <main className="padded">
       <Head>
         <title>exercise</title>
-      </Head>
-      <main className="padded">
-        <ExercisePageInternal/>
-      </main>
-    </div>
+      </Head>  
+      <ExercisePageInternal/>
+    </main>
+    
   )
 }
 
