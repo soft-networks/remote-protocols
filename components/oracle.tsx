@@ -1,9 +1,12 @@
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getRandomExercise } from "../lib/exercises";
+import FadeInY from "./animations/FadeInY";
 import ExerciseCard from "./exerciseCard";
 
 const Oracle: React.FC = () => {
   const [status, setStatus] = useState<"SUMMONING" | "SUMMONED" | "INITIAL">();
+  const router = useRouter();
 
   const displayOracle = useMemo(() => {
     console.log("RUNNING ORACLE", status);
@@ -16,19 +19,25 @@ const Oracle: React.FC = () => {
           </div>
         );
       case "SUMMONED":
-        return  <ExerciseCard exercise={getRandomExercise()} share/>;
+        let exercise = getRandomExercise();
+        return (
+          <FadeInY>
+  
+            <ExerciseCard exercise={exercise} share />
+          </FadeInY>
+        );
       default:
       case "INITIAL":
         return (
-          <div className="stack narrow">
+          <div className="stack narrow whiteFill border padded">
             <div> Ask the oracle for an exercise </div>
-            <span className="button" onClick={() => setStatus("SUMMONING")}>
+            <span className="button border padded:s-1 button" onClick={() => setStatus("SUMMONING")}>
               get it
             </span>
           </div>
         );
     }
-  }, [status]);
+  }, [status, router]);
 
   return displayOracle;
 };

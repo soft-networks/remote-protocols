@@ -69,6 +69,11 @@ a {
 .border {
   border: 1px solid var(--black);
 }
+.button:hover {
+  background: var(--contrast);
+  cursor: pointer;
+}
+
 .fullBleed {
   width: 100%;
   height: 100%;
@@ -96,6 +101,7 @@ a {
 .contrastFill {
   background: var(--contrast);
 }
+
 
 .caption {
   font-size: var(--s-1);

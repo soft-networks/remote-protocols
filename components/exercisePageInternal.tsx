@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { getExerciseByID } from "../lib/exercises";
+import FadeInY from "./animations/FadeInY";
 import ExerciseCard from "./exerciseCard";
 
 const ExercisePageInternal: React.FC = () => {
@@ -12,7 +13,9 @@ const ExercisePageInternal: React.FC = () => {
       {!isReady ? (
         <div>Loading</div>
       ) : exercise ? (
-        <ExerciseCard exercise={exercise} />
+        <FadeInY>
+          <ExerciseCard exercise={exercise} />
+        </FadeInY>
       ) : (
         <div> Exercise not found </div>
       )}

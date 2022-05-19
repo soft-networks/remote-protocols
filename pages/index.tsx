@@ -7,15 +7,12 @@ import { getRandomExercise } from '../lib/exercises'
 const Home: NextPage = () => {
   
   return (
-    <div >
+    <main className="fullBleed padded center">
       <Head>
         <title>exercises for two</title>
       </Head>
-
-      <main className="padded">
-        <Oracle/>
+      <Oracle/>      
       </main>
-    </div>
   )
 }
 
