@@ -46,16 +46,7 @@ a {
   background-color: var(--contrast);
 }
 
-.tarotCard {
-  --aspect: 1.72;
-  --cardHeight: 60vh;
-  height: var(--cardHeight);
-  width: calc(var(--cardHeight) /  var(--aspect));
-}
 
-.tarotCard .contentContainer {
-  background: var(--white);
-}
 .noEvents {
   pointer-events: none;
 }
@@ -69,6 +60,9 @@ a {
 .padded\:s1 {
   padding: var(--s1);
 }
+.padded\:s-1{
+  padding: var(--s-1);
+}
 .marginTop {
   margin-top:  var(--spacing);
 }
@@ -78,6 +72,16 @@ a {
 .fullBleed {
   width: 100%;
   height: 100%;
+}
+.containBG {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.coverBG {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .fullHeight {
   height: 100%;
