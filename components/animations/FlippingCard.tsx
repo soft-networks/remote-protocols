@@ -1,4 +1,4 @@
-import { motion, useMotionValue } from "framer-motion";
+import { m, useMotionValue } from "framer-motion";
 
 
 const FlippingCard: React.FC<{ hiddenSide?: boolean; flipCard: number }> = ({ children, hiddenSide, flipCard }) => {
@@ -21,7 +21,7 @@ const FlippingCard: React.FC<{ hiddenSide?: boolean; flipCard: number }> = ({ ch
   };
 
   return (
-    <motion.div
+    <m.div
       onMouseMove={handleMouseMove}
       className="contentContainer"
       initial={{ rotateY: initAngle }}
@@ -29,10 +29,10 @@ const FlippingCard: React.FC<{ hiddenSide?: boolean; flipCard: number }> = ({ ch
       transition={{ rotateY: {duration: 1}, scale: {duration: 0.3}}}
       whileHover={{scale: 1.1}}
     >
-      <motion.div className="fullBleed border glow" style={{rotateX: y, rotateY: x}}>
+      <m.div className="fullBleed border glow" style={{rotateX: y, rotateY: x}}>
         {children}
-      </motion.div>
-    </motion.div>
+      </m.div>
+    </m.div>
   );
 };
 

@@ -16,8 +16,8 @@ const All: NextPage = () => {
           className="halfWidth fullHeight grid padded"
           style={{ "--stackSpacing": "var(--s2)" } as React.CSSProperties}
         >
-          {getAllExercises().map((e) => (
-            <CardPreview exercise={e} key={"card-" + e.name} />
+          {getAllExercises().map((e, i) => (
+            <CardPreview exercise={e} key={"card-" + e.name} i={i} />
           ))}
         </div>
       </div>
