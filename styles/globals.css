@@ -13,7 +13,7 @@
   --s-4: calc(var(--s-3) / var(--ratio));
   --s-5: calc(var(--s-4) / var(--ratio));
 
-  --spacing: var(--s1);
+  --spacing: var(--s0);
   --stackSpacing: var(--s0);
 
   --gray: #eeeeee;
@@ -30,6 +30,7 @@ html, body, main , #__next{
 
 body {
   background: var(--gray);
+  line-height: 1.2;
 }
 
 * {
@@ -95,6 +96,23 @@ a {
   width: 100%;
 }
 
+.narrow {
+  width: 56ch;
+  max-width: 100%;
+  z-index: 2;
+}
+
+.flipHover {
+  cursor: ne-resize;
+  cursor: alias;
+}
+.clickHover {
+  cursor: pointer;
+}
+.halfWidth {
+  width: max(60%, calc(600px + 2* var(--spacing)));
+  position: relative;
+}
 .whiteFill {
   background: var(--white);
 }
@@ -120,9 +138,21 @@ a {
   align-items: center;
   justify-content: center;
 }
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--stackSpacing);
+  justify-content: center;
+}
+
+
+
+
 .stack {
   display: flex; 
   flex-direction: column;
+  --stackSpacing: var(--s0);
 }
 
 .stack > * + * {
@@ -132,19 +162,31 @@ a {
 .stack .align-end {
   margin-top: auto;
 }
+.horizontal-stack .align-end {
+  margin-left: auto;
+}
 
 .horizontal-stack {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  --stackSpacing: var(--s0);
 }
-
 
 .horizontal-stack > * + * {
   margin-left: var(--stackSpacing);
 }
-.horizontal-stack.no-gap > * + * {
-  margin-left: 0;
+
+
+.stackSpacing\:noGap {
+  --stackSpacing: 0;
+} 
+
+.stackSpacing\:s1 {
+  --stackSpacing: var(--s1);
+}
+.stackSpacing\:s-1 {
+  --stackSpacing: var(--s-1);
 }
 
 .flex-1 {
@@ -152,11 +194,6 @@ a {
 }
 
 
-.narrow {
-  width: calc(50ch - 2 * var(--spacing));
-  max-width: 100%;
-  z-index: 2;
-}
 
 input {
   all: unset;
@@ -164,3 +201,10 @@ input {
 input::placeholder {
   color: inherit;
 }
+
+@media screen and (max-width: 600px) {
+  ::root {
+    width: calc(100% - 2 * var(--spacing));
+  }
+}
+  

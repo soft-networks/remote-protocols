@@ -5,8 +5,14 @@ interface Rating {
 }
 
 interface Exercise {
+  id: string,
   name: string,
   text: string,
   rating: Rating,
   suit: Suit
+}
+
+interface exerciseProps {
+  exercise: Exercise;
+  share?: boolean;
 }

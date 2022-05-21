@@ -26,7 +26,7 @@ const FlippingCard: React.FC<{ hiddenSide?: boolean; flipCard: number }> = ({ ch
       className="contentContainer"
       initial={{ rotateY: initAngle }}
       animate={{ rotateY: initAngle + 180 * flipCard }}
-      transition={{ duration: 1}}
+      transition={{ rotateY: {duration: 1}, scale: {duration: 0.3}}}
       whileHover={{scale: 1.1}}
     >
       <motion.div className="fullBleed border glow" style={{rotateX: y, rotateY: x}}>

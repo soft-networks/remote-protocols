@@ -1,20 +1,16 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import ExercisePageInternal from '../components/exercisePageInternal'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import ExercisePageInternal from "../components/exercisePageInternal";
+import Header from "../components/header";
+import Layout from "../components/layout";
 
 const ExercisePage: NextPage = () => {
-  
   return (
-    <main className="padded">
-      <Head>
-        <title>exercise</title>
-      </Head>  
-      <ExercisePageInternal/>
-    </main>
-    
-  )
-}
+    <Layout>
+      <ExercisePageInternal />
+    </Layout>
+  );
+};
 
-
-export default ExercisePage
+export default ExercisePage;

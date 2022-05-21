@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getRandomExercise } from "../lib/exercises";
 import FadeInY from "./animations/FadeInY";
-import ExerciseCard from "./exerciseCard";
+import CardDetail from "./CardDetail";
+import CardContent from "./CardContent";
 
 const Oracle: React.FC = () => {
   const [status, setStatus] = useState<"SUMMONING" | "SUMMONED" | "INITIAL">();
@@ -20,10 +21,10 @@ const Oracle: React.FC = () => {
         );
       case "SUMMONED":
         let exercise = getRandomExercise();
+        router.push('/' + exercise.id, undefined, {shallow: true});
         return (
           <FadeInY>
-  
-            <ExerciseCard exercise={exercise} share />
+            <CardDetail exercise={exercise} share />
           </FadeInY>
         );
       default:

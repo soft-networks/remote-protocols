@@ -1,19 +1,15 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Oracle from '../components/oracle'
-import { getRandomExercise } from '../lib/exercises'
+import type { NextPage } from "next";
+import Layout from "../components/layout";
+import Oracle from "../components/oracle";
 
 const Home: NextPage = () => {
-  
   return (
-    <main className="fullBleed padded center">
-      <Head>
-        <title>exercises for two</title>
-      </Head>
-      <Oracle/>      
-      </main>
-  )
-}
+    <Layout>
+      <div className="fullBleed padded center">
+        <Oracle />
+      </div>
+    </Layout>
+  );
+};
 
-export default Home
+export default Home;
