@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import VisibilitySensor from "react-visibility-sensor";
 import CardContent from "./CardContent";
 
@@ -7,17 +7,19 @@ import CardContent from "./CardContent";
 const CardPreview : React.FC<exerciseProps & {i?: number}> = ( props) => {
 
   const router = useRouter();
+  const myRef = useRef<HTMLDivElement>(null);
 
   const [delayPassed, setDelayPassed] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setDelayPassed(true), 500 * ( (props.i || 0) + 1));
+    let timeout = setTimeout(() => setDelayPassed(true), 500 * ( (props.i || 0) + 1));
+    return () => clearTimeout(timeout);
   }, [setDelayPassed, props.i])
 
   return (
-    <VisibilitySensor active={delayPassed}>
+    <VisibilitySensor active={delayPassed} >
       {({isVisible}) =>
-        <div className="clickHover">
+        <div className="clickHover" ref={myRef}>
         <CardContent {...props} flipCard={isVisible ? 1 : 0}  onCardClick={() => router.push("/" + props.exercise.id)} preview={true}/>
         </div>
       }

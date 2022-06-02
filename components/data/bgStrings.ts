@@ -1,4 +1,4 @@
-export let bg = `
+let bgGalaxy = `
 .      .      .      .      .      .      .      .      .      .      .
 .   .       .       .       .       .       . .      .      .      .      .     
 .                               .       .       .       .       .       .
@@ -31,3 +31,41 @@ export let bg = `
      .      .      .      .      .      .      .      .      .      .      .
  .      .      .      .      .      .      .      .      .      .      .
 .                               .       .       .       .       .       .`;
+
+let bgDots = `
+.               .            .           .              .      
+
+.                        .      .           .        .      “                  .
+
+     .         "                     .           .                     .          .
+       .               .            .           .              .      
+
+.                        .                .        .      “                  .
+
+     .         "                                .                     .          .
+    .                                                      .      
+
+    .                        .                          .      “                  .
+    
+        .         "                                                    .          .
+
+.               .            .                               
+
+.                        .      .                                           .
+
+.         "                     .           .                     .          .
+  
+.               .            .           .              .      
+
+.                        .      .           .        .      “                  .
+
+      .         "                     .           .                     .          .
+      
+`
+const bgMapping: { [key: string]: string } = {
+  blank: ``,
+  galaxy: bgGalaxy,
+  dots: bgDots,
+};
+
+export default bgMapping;

@@ -16,8 +16,8 @@
   --spacing: var(--s0);
   --stackSpacing: var(--s0);
 
-  --gray: #2C3464;
-  --light: #F9E8F0;
+  --gray: #10163b;
+  --light: #dcf9ff;
   --black: black;
   --white: white;
   --contrast: pink;
@@ -33,8 +33,8 @@ body {
   background: var(--gray);
   line-height: 1.2;
   color: var(--light);
-  font-family: 'IBM Plex Mono', monospace;
-  text-transform: uppercase;
+  font-family: 'Share Tech Mono', monospace;
+
 }
 
 pre {
@@ -50,6 +50,9 @@ pre {
   padding: 0;
   margin: 0;
 }
+h4 {
+  font-size: var(--s0);
+}
 
 a {
   color: inherit;
@@ -63,6 +66,10 @@ a {
 a:hover, .button:hover {
   color: var(--contrast);
   cursor: pointer;
+}
+.button {
+  text-transform: uppercase;
+  color: var(--white);
 }
 .button::before {
   content: "[";
@@ -212,6 +219,7 @@ p {
   --stackSpacing: var(--s0);
 }
 
+
 .stack > * + * {
   margin-top: var(--stackSpacing);
 }
@@ -238,13 +246,6 @@ p {
 .stackSpacing\:noGap {
   --stackSpacing: 0;
 } 
-
-.stackSpacing\:s1 {
-  --stackSpacing: var(--s1);
-}
-.stackSpacing\:s-1 {
-  --stackSpacing: var(--s-1);
-}
 
 .flex-1 {
   flex: 1

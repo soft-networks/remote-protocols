@@ -1,41 +1,111 @@
 import { useRouter } from "next/router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { getRandomExercise } from "../lib/exercises";
 import CardDetail from "./CardDetail";
 import CardContent from "./CardContent";
+import { useSetBackgroundID } from "./backgrounds";
+import { OracleCompletedText, OraclePromptText, OracleUpdatingText, textToP } from "./data/fgStrings";
+
+const STAGE_LENGTH = 3000;
 
 const Oracle: React.FC = () => {
-  const [status, setStatus] = useState<"SUMMONING" | "SUMMONED" | "INITIAL">();
+  const [status, setStatus] = useState<"SUMMONED" | "INITIAL" | "COMPLETE">("INITIAL");
   const router = useRouter();
 
-  const displayOracle = useMemo(() => {
+  const displayOracle = useCallback(() => {
     console.log("RUNNING ORACLE", status);
     switch (status) {
-      case "SUMMONING":
-        setTimeout(() => setStatus("SUMMONED"), Math.random() * 1000 + 1000);
-        return (
-          <div className="center-all">
-            <div> summoning</div>
-          </div>
-        );
       case "SUMMONED":
+        setStatus("COMPLETE");
         let exercise = getRandomExercise();
-        router.push('/' + exercise.id);
-      default:
+        router.push("/" + exercise.id);
+        return <span> ... </span>;
       case "INITIAL":
-        return (
-          <div className="stack narrow grayFill center-text border padded:s2">
-            <p>  ARE YOU LOOKING TO CONNECT WITH SOMEONE FROM AFAR? </p>
-            <p>  THE LITTLE ORACLE PROVIDES PROTOCOLS TO HELP YOU COMMUNICATE WITH A REMOTE SUBJECT </p>
-            <span className="button" onClick={() => setStatus("SUMMONING")}>
-              get it
-            </span>
-          </div>
-        );
+        return <PromptDialog onPromptComplete={() => setStatus("SUMMONED")} />
+      default:
+      case "COMPLETE":
+        return null;
     }
   }, [status, router]);
 
-  return displayOracle;
+  return displayOracle();
 };
+
+const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplete}) => {
+
+  const [stage, setStage] = useState<number>(0);
+  const setBGID = useSetBackgroundID();
+
+  useEffect(() => {
+    // console.log("stage changed", stage);
+    switch (stage) {
+      case 0:
+      case 1: 
+        setBGID("dots");
+        break;
+      case 2: 
+        setBGID("galaxy");
+        break;
+      case 4: 
+        onPromptComplete();
+        break;
+      default:
+        setBGID("blank");
+        break;
+    }
+  }, [stage, setBGID, onPromptComplete]);
+
+  const displayText = useMemo((): JSX.Element | null => {
+    switch (stage) {
+      case 0: {
+        return (
+          <div className="stack narrow grayFill border padded:s2">
+            {textToP(OraclePromptText)}
+            <span className="button center" onClick={() => setStage(1)}>
+              request a protocol
+            </span>
+          </div>
+        );
+      }
+      case 1: 
+        return <UpdatingOracleText onAnimationComplete={() => setStage(2)} textStrings={OracleUpdatingText} key="dots"/>
+      case 2: 
+        return <UpdatingOracleText onAnimationComplete={() => setStage(3)} textStrings={[["..."]]} key="galaxy"/>
+      case 3: 
+        return <UpdatingOracleText onAnimationComplete={() => setStage(4)} textStrings={OracleCompletedText} key="complete"/>
+      default: 
+        return null
+    }
+  }, [stage]);
+
+  return displayText 
+};
+
+const UpdatingOracleText: React.FC<{textStrings: string[][], onAnimationComplete: () => void}> = ({textStrings, onAnimationComplete}) => {
+  
+  let [textStage, setTextStage] = useState<number>(0);
+  let [activeText, setActiveText] = useState<string[]>([]);
+
+
+  useEffect(() => {
+    // console.log("text stage", textStage, textStrings);
+
+    if (textStage >= textStrings.length) {
+      onAnimationComplete();
+      return;
+    }
+    
+    setActiveText(textStrings[textStage]);
+    
+  }, [textStage, textStrings, onAnimationComplete]);
+  
+  useEffect(() => {
+    let interval = setInterval(() => setTextStage((t) => t+1) , STAGE_LENGTH);
+    return () => clearInterval(interval);
+  }, [])
+
+  return textToP(activeText)
+}
+
 
 export default Oracle;

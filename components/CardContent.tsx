@@ -23,14 +23,25 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
   return (
     <div className="stack">
       <div className="tarotCard padded stack lightFill" onClick={onCardClick}>
-        <div className="caption"> {exercise.name} </div>
+        <div> {exercise.name} </div>
         <div className="flex-1"> {exercise.text} </div>
         <div className="align-end horizontal-stack fullWidth">
           <span> {ratingRenderer("#", exercise.rating.intimacy)} </span>
           <span> {ratingRenderer("@", exercise.rating.effort)} </span>
         </div>
       </div>
-      {!preview ? <div className="horizontal-stack">{shareButton(exercise)}</div> : null}
+      {!preview ? (
+        <div className="horizontal-stack">
+          <div className="button" onClick={onCardClick}>
+            ?
+          </div>
+      
+          {shareButton(exercise)}
+          <div className="button" onClick={() => alert("todo")}>
+            reflect
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -48,8 +59,8 @@ const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }
           }}
           className="center-text stack"
         >
-          <p>HERE IS A PROTOCOL TO CONNECT REMOTELY. </p>
-          <p> BOTH OF YOU PERFORM ITS STEPS TO CONNECT WITH EACH OTHER.</p>
+          <p>here is a protocol to connect remotely. </p>
+          <p>both of you perform its steps to connect with each other.</p>
         </div>
       ) : null}
       <div className="stack relative">
@@ -61,7 +72,7 @@ const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }
         {!preview ? (
           <div className="horizontal-stack">
             <div className="button" onClick={onCardClick}>
-              flip
+              SEE PROTOCOL
             </div>
           </div>
         ) : null}

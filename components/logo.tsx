@@ -9,12 +9,13 @@ const Logo: React.FC = () => {
 
   const flicker = useCallback(() => {
     if (Math.random() > 0.5) {
-      setOne("");
-      setTimeout(() => setOne("1"), 100);
+      setOne("_");
+      setTimeout(() => setOne("1"), 300);
     }
   }, [setOne]);
 
   useEffect(() => {    
+    flicker();
     let interval = setInterval(flicker, flickerTime);
     return () => clearInterval(interval);
   }, [flicker])
