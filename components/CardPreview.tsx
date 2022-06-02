@@ -18,7 +18,7 @@ const CardPreview : React.FC<exerciseProps & {i?: number}> = ( props) => {
     <VisibilitySensor active={delayPassed}>
       {({isVisible}) =>
         <div className="clickHover">
-        <CardContent {...props} flipCard={isVisible ? 1 : 0}  onCardClick={() => router.push("/" + props.exercise.id)} />
+        <CardContent {...props} flipCard={isVisible ? 1 : 0}  onCardClick={() => router.push("/" + props.exercise.id)} preview={true}/>
         </div>
       }
     </VisibilitySensor>

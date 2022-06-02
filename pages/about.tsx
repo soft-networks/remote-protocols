@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <div className="fullBleed center">
-        <div className="narrow stack whiteFill border padded">
+        <div className="stack grayFill sans-serif border padded">
           <p>Your friend is far away, and you miss them. How can you reach them?</p>
 
           <p>

@@ -1,34 +1,18 @@
 import { suitImages } from "../lib/exercises";
-import FlippingCard from "./animations/FlippingCard";
 
-type CardContentInternal = exerciseProps & { flipCard: number; onCardClick?: () => void };
+type CardSideInternal = exerciseProps & { onCardClick?: () => void; preview?: boolean };
+type CardContentInternal = CardSideInternal & { flipCard: number };
 
-const CardContent: React.FunctionComponent<CardContentInternal> = ({ exercise, share, flipCard, onCardClick }) => {
+const CardContent: React.FunctionComponent<CardContentInternal> = (props) => {
   return (
-    <div className="stack stackSpacing:s1">
-      <div
-        className="tarotCard"
-        onClick={() => {
-          if (onCardClick) onCardClick();
-        }}
-      >
-        <FlippingCard flipCard={flipCard}>
-          <CardBack exercise={exercise} />
-        </FlippingCard>
-        <FlippingCard hiddenSide flipCard={flipCard}>
-          <CardFront exercise={exercise} />
-        </FlippingCard>
-      </div>
-      {share && (
-        <div className="horizontal-stack">
-          <span className="button lightFill border padded:s-1"> {shareButton(exercise)}</span>
-        </div>
-      )}
+    <div>
+      {!props.flipCard ? <CardBack {...props} /> : ""}
+      {props.flipCard ? <CardFront {...props} /> : ""}
     </div>
   );
 };
 
-const CardFront: React.FC<{ exercise: Exercise }> = ({ exercise }) => {
+const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }) => {
   const ratingRenderer = (symbol: string, n: number) => {
     let stars = [];
     for (let i = 0; i < n; i++) {
@@ -37,19 +21,53 @@ const CardFront: React.FC<{ exercise: Exercise }> = ({ exercise }) => {
     return stars;
   };
   return (
-    <div className="fullBleed padded stack whiteFill">
-      <div className="caption"> {exercise.name} </div>
-      <div className="flex-1"> {exercise.text} </div>
-      <div className="align-end horizontal-stack fullWidth">
-        <span> {ratingRenderer("🌸", exercise.rating.intimacy)} </span>
-        <span> {ratingRenderer("🕑", exercise.rating.effort)} </span>
+    <div className="stack">
+      <div className="tarotCard padded stack lightFill" onClick={onCardClick}>
+        <div className="caption"> {exercise.name} </div>
+        <div className="flex-1"> {exercise.text} </div>
+        <div className="align-end horizontal-stack fullWidth">
+          <span> {ratingRenderer("#", exercise.rating.intimacy)} </span>
+          <span> {ratingRenderer("@", exercise.rating.effort)} </span>
+        </div>
       </div>
+      {!preview ? <div className="horizontal-stack">{shareButton(exercise)}</div> : null}
     </div>
   );
 };
 
-const CardBack: React.FC<{ exercise: Exercise }> = ({ exercise }) => {
-  return <div className="fullBleed coverBG" style={{ backgroundImage: `url(${suitImages[exercise.suit]})` }}></div>;
+const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }) => {
+  return (
+    <div>
+      {!preview ? (
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            width: "min(45ch, 100%)",
+            transform: "translate(-50%, calc(-100% - var(--s2))",
+          }}
+          className="center-text stack"
+        >
+          <p>HERE IS A PROTOCOL TO CONNECT REMOTELY. </p>
+          <p>WITH A FRIEND, BOTH OF YOU PERFORM ITS STEPS TO CONNECT WITH EACH OTHER.</p>
+        </div>
+      ) : null}
+      <div className="stack relative">
+        <div
+          className="tarotCard coverBG"
+          style={{ backgroundImage: `url(${suitImages[exercise.suit]})` }}
+          onClick={onCardClick}
+        ></div>
+        {!preview ? (
+          <div className="horizontal-stack">
+            <div className="button" onClick={onCardClick}>
+              flip
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  );
 };
 
 const shareButton = (exercise: Exercise) => {

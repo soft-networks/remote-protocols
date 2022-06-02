@@ -14,5 +14,4 @@ interface Exercise {
 
 interface exerciseProps {
   exercise: Exercise;
-  share?: boolean;
 }

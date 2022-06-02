@@ -16,10 +16,11 @@
   --spacing: var(--s0);
   --stackSpacing: var(--s0);
 
-  --gray: #eeeeee;
+  --gray: #2C3464;
+  --light: #F9E8F0;
   --black: black;
   --white: white;
-  --contrast: yellow;
+  --contrast: pink;
   
   
 }
@@ -31,8 +32,19 @@ html, body, main , #__next{
 body {
   background: var(--gray);
   line-height: 1.2;
+  color: var(--light);
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
 }
 
+pre {
+  line-height: 1.0;
+}
+
+.sans-serif {
+  font-family: sans-serif;
+  text-transform: none;
+}
 * {
   box-sizing: border-box;
   padding: 0;
@@ -43,6 +55,26 @@ a {
   color: inherit;
   text-decoration: underline;
 }
+.active a {
+  color : var(--contrast);
+  text-decoration: none;
+}
+
+a:hover, .button:hover {
+  color: var(--contrast);
+  cursor: pointer;
+}
+.button::before {
+  content: "[";
+  text-decoration: none;
+  display: inline-block;
+}
+.button::after {
+  content: "]";
+  text-decoration: none;
+  display: inline-block;
+}
+
 *::selection {
   background-color: var(--contrast);
 }
@@ -61,6 +93,9 @@ a {
 .padded\:s1 {
   padding: var(--s1);
 }
+.padded\:s2 {
+  padding: var(--s2);
+}
 .padded\:s-1{
   padding: var(--s-1);
 }
@@ -68,16 +103,27 @@ a {
   margin-top:  var(--spacing);
 }
 .border {
-  border: 1px solid var(--black);
+  border: 1px solid var(--light);
+  
 }
-.button:hover {
-  background: var(--contrast);
-  cursor: pointer;
+.button {
+  display: inline-block;
 }
+
 
 .fullBleed {
   width: 100%;
   height: 100%;
+  position: relative;
+}
+.fullBleed.absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.relative {
+  position: relative;
 }
 .containBG {
   background-size: contain;
@@ -85,6 +131,7 @@ a {
   background-position: center;
 }
 .coverBG {
+  background-color: var(--light);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -96,16 +143,16 @@ a {
   width: 100%;
 }
 
-.narrow {
-  width: 56ch;
+.narrow p {
+  width: 32ch;
   max-width: 100%;
   z-index: 2;
+} 
+
+p {
+  width: 48ch;
 }
 
-.flipHover {
-  cursor: ne-resize;
-  cursor: alias;
-}
 .clickHover {
   cursor: pointer;
 }
@@ -115,6 +162,13 @@ a {
 }
 .whiteFill {
   background: var(--white);
+}
+.lightFill {
+  background: var(--light);
+  color: var(--black);
+}
+.grayFill {
+  background: var(--gray);
 }
 .contrastFill {
   background: var(--contrast);
@@ -137,6 +191,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.center-text {
+  text-align: center;
 }
 
 .grid {

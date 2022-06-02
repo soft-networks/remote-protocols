@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { getRandomExercise } from "../lib/exercises";
-import FadeInY from "./animations/FadeInY";
 import CardDetail from "./CardDetail";
 import CardContent from "./CardContent";
 
@@ -21,18 +20,14 @@ const Oracle: React.FC = () => {
         );
       case "SUMMONED":
         let exercise = getRandomExercise();
-        router.push('/' + exercise.id, undefined, {shallow: true});
-        return (
-          <FadeInY>
-            <CardDetail exercise={exercise} share />
-          </FadeInY>
-        );
+        router.push('/' + exercise.id);
       default:
       case "INITIAL":
         return (
-          <div className="stack narrow whiteFill border padded">
-            <div> Ask the oracle for an exercise </div>
-            <span className="button border padded:s-1 button" onClick={() => setStatus("SUMMONING")}>
+          <div className="stack narrow grayFill center-text border padded:s2">
+            <p>  ARE YOU LOOKING TO CONNECT WITH SOMEONE FROM AFAR? </p>
+            <p>  THE LITTLE ORACLE PROVIDES PROTOCOLS TO HELP YOU COMMUNICATE WITH A REMOTE SUBJECT </p>
+            <span className="button" onClick={() => setStatus("SUMMONING")}>
               get it
             </span>
           </div>

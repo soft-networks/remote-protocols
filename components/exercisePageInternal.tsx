@@ -13,9 +13,7 @@ const ExercisePageInternal: React.FC = () => {
       {!isReady ? (
         <div>Loading</div>
       ) : exercise ? (
-        <FadeInY>
           <CardDetail exercise={exercise} />
-        </FadeInY>
       ) : (
         <div> Exercise not found </div>
       )}
