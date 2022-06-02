@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { getExerciseByID } from "../lib/exercises";
-import FadeInY from "./animations/FadeInY";
 import CardDetail from "./CardDetail";
 
 const ExercisePageInternal: React.FC = () => {

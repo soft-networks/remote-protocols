@@ -49,7 +49,7 @@ const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }
           className="center-text stack"
         >
           <p>HERE IS A PROTOCOL TO CONNECT REMOTELY. </p>
-          <p>WITH A FRIEND, BOTH OF YOU PERFORM ITS STEPS TO CONNECT WITH EACH OTHER.</p>
+          <p> BOTH OF YOU PERFORM ITS STEPS TO CONNECT WITH EACH OTHER.</p>
         </div>
       ) : null}
       <div className="stack relative">
