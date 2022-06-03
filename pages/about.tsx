@@ -9,8 +9,7 @@ import { getRandomExercise } from "../data/protocols";
 const Home: NextPage = () => {
   return (
     <Layout>
-      <div className="fullBleed center">
-        <div className="stack grayFill sans-serif border padded">
+        <div className="stack grayFill sans-serif border padded center-mobilefill">
           <p>Your friend is far away, and you miss them. How can you reach them?</p>
 
           <p>
@@ -39,7 +38,6 @@ const Home: NextPage = () => {
             they made us feel closer as well as the amount of effort it took to send each.
           </p>
         </div>
-      </div>
     </Layout>
   );
 };

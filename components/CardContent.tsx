@@ -52,16 +52,9 @@ const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }
     <div>
       {!preview ? (
         <div
-          style={{
-            position: "absolute",
-            left: "50%",
-            width: "min(45ch, 100%)",
-            transform: "translate(-50%, calc(-100% - var(--s2))",
-          }}
-          className="center-text stack"
+          className="center-text stack floatingText"
         >
-          <p>here is a protocol to connect remotely. </p>
-          <p>both of you perform its steps to connect with each other.</p>
+          <p>here is a protocol to connect remotely. both of you perform its steps to connect with each other.</p>
         </div>
       ) : null}
       <div className="stack relative">
