@@ -5,8 +5,8 @@ import CardDetail from "./CardDetail";
 import CardContent from "./CardContent";
 import { useSetBackgroundID } from "./backgrounds";
 import { OracleCompletedText, OraclePromptText, OracleUpdatingText, textToP } from "./data/fgStrings";
+import { BG_TRANSITION_TIME, PER_ORACLE_TEXT_TIME } from "./data/times";
 
-const STAGE_LENGTH = 3000;
 
 const Oracle: React.FC = () => {
   const [status, setStatus] = useState<"SUMMONED" | "INITIAL" | "COMPLETE">("INITIAL");
@@ -37,14 +37,19 @@ const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplet
   const setBGID = useSetBackgroundID();
 
   useEffect(() => {
-    // console.log("stage changed", stage);
+  // console.log("stage changed", stage);
     switch (stage) {
       case 0:
+        setBGID("home");
+        break;
       case 1: 
         setBGID("dots");
         break;
       case 2: 
         setBGID("galaxy");
+        break;
+      case 3: 
+        setBGID("dots");
         break;
       case 4: 
         onPromptComplete();
@@ -70,7 +75,14 @@ const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplet
       case 1: 
         return <UpdatingOracleText onAnimationComplete={() => setStage(2)} textStrings={OracleUpdatingText} key="dots"/>
       case 2: 
-        return <UpdatingOracleText onAnimationComplete={() => setStage(3)} textStrings={[["..."]]} key="galaxy"/>
+        return (
+          <UpdatingOracleText
+            onAnimationComplete={() => setStage(3)}
+            textStrings={[[""]]}
+            key="galaxy"
+            timePerStage={BG_TRANSITION_TIME + 2 * PER_ORACLE_TEXT_TIME}
+          />
+        );
       case 3: 
         return <UpdatingOracleText onAnimationComplete={() => setStage(4)} textStrings={OracleCompletedText} key="complete"/>
       default: 
@@ -81,11 +93,14 @@ const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplet
   return displayText 
 };
 
-const UpdatingOracleText: React.FC<{textStrings: string[][], onAnimationComplete: () => void}> = ({textStrings, onAnimationComplete}) => {
-  
+
+const UpdatingOracleText: React.FC<{
+  textStrings: string[][];
+  onAnimationComplete: () => void;
+  timePerStage?: number;
+}> = ({ textStrings, onAnimationComplete, timePerStage = PER_ORACLE_TEXT_TIME }) => {
   let [textStage, setTextStage] = useState<number>(0);
   let [activeText, setActiveText] = useState<string[]>([]);
-
 
   useEffect(() => {
     // console.log("text stage", textStage, textStrings);
@@ -94,18 +109,17 @@ const UpdatingOracleText: React.FC<{textStrings: string[][], onAnimationComplete
       onAnimationComplete();
       return;
     }
-    
-    setActiveText(textStrings[textStage]);
-    
-  }, [textStage, textStrings, onAnimationComplete]);
-  
-  useEffect(() => {
-    let interval = setInterval(() => setTextStage((t) => t+1) , STAGE_LENGTH);
-    return () => clearInterval(interval);
-  }, [])
 
-  return textToP(activeText)
-}
+    setActiveText(textStrings[textStage]);
+  }, [textStage, textStrings, onAnimationComplete]);
+
+  useEffect(() => {
+    let interval = setInterval(() => setTextStage((t) => t + 1), timePerStage);
+    return () => clearInterval(interval);
+  }, [timePerStage]);
+
+  return textToP(activeText);
+};
 
 
 export default Oracle;

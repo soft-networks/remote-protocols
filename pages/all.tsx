@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useEffect } from "react";
 import CardDetail from "../components/CardDetail";
 import CardPreview from "../components/CardPreview";
 import CardContent from "../components/CardContent";
@@ -9,6 +9,7 @@ import Layout from "../components/layout";
 import { getAllExercises } from "../lib/exercises";
 
 const All: NextPage = () => {
+
   return (
     <Layout pageName="all protocols">
       <div className="fullBleed center">

@@ -37,8 +37,10 @@ body {
 
 }
 
-pre {
+code, pre {
   line-height: 1.0;
+  font-size: inherit;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .sans-serif {

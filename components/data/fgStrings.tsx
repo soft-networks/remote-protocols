@@ -23,7 +23,7 @@ export const textToP = (text: string[]) => {
   return (
     <div className="stack center-text">
       {text.map((t, i) => (
-        <p key={"line-" + i}>{t}</p>
+        <p key={"line-" + i} className="grayFill">{t}</p>
       ))}
     </div>
   );
