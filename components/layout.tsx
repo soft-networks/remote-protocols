@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Header from "./header";
 import { m } from "framer-motion";
 import { useRouter } from "next/router";
-import BackgroundProvider from "./backgrounds";
+import BackgroundProvider from "./BackgroundProvider";
+import Header from "./header";
 
 
 const Layout: React.FC<{ pageName?: string }> = ({ children, pageName }) => {

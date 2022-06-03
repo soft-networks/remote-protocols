@@ -1,15 +1,18 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import React, { useEffect } from "react";
-import CardDetail from "../components/CardDetail";
+import { useEffect } from "react";
+import { useSetBackgroundID } from "../components/BackgroundProvider";
 import CardPreview from "../components/CardPreview";
-import CardContent from "../components/CardContent";
-import Header from "../components/header";
 import Layout from "../components/layout";
-import { getAllExercises } from "../lib/exercises";
+import { getAllExercises } from "../data/protocols";
 
 const All: NextPage = () => {
 
+  const setBGID = useSetBackgroundID();
+
+  useEffect(() => {
+    setBGID("dots");  
+  }, [setBGID])
+  
   return (
     <Layout pageName="all protocols">
       <div className="fullBleed center">

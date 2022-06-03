@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { getExerciseByID } from "../lib/exercises";
+import { getExerciseByID } from "../data/protocols";
 import CardDetail from "./CardDetail";
 
-const ExercisePageInternal: React.FC = () => {
+const ProtocolPageInternal: React.FC = () => {
   const { query, isReady } = useRouter()
   
   const eid = query.id as string
@@ -20,4 +20,4 @@ const ExercisePageInternal: React.FC = () => {
   );
 };
 
-export default ExercisePageInternal;
+export default ProtocolPageInternal;

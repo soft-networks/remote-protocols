@@ -18,11 +18,12 @@
 
   --gray: #10163b;
   --light: #dcf9ff;
-  --black: black;
+  --black: #0a0f2a;
   --white: white;
   --contrast: pink;
+
   
-  
+
 }
 
 html, body, main , #__next{
@@ -61,12 +62,12 @@ a {
   text-decoration: underline;
 }
 .active a {
-  color : var(--contrast);
+  color : var(--white);
   text-decoration: none;
 }
 
 a:hover, .button:hover {
-  color: var(--contrast);
+  color: var(--light);
   cursor: pointer;
 }
 .button {
@@ -82,10 +83,6 @@ a:hover, .button:hover {
   content: "]";
   text-decoration: none;
   display: inline-block;
-}
-
-*::selection {
-  background-color: var(--contrast);
 }
 
 
@@ -127,9 +124,12 @@ a:hover, .button:hover {
 }
 .fullBleed.absolute {
   position: absolute;
-  top: 0;
+  top: calc(-1 * var(--s0));
   left: 0;
   z-index: -1;
+  max-width: 100%;
+  max-height: calc(100% + var(--s0));
+  overflow: hidden;
 }
 .relative {
   position: relative;
@@ -179,8 +179,12 @@ p {
 .grayFill {
   background: var(--gray);
 }
+.blackFill {
+  background: var(--black);
+}
 .contrastFill {
   background: var(--contrast);
+  color: var(--gray)
 }
 
 
@@ -265,6 +269,10 @@ input::placeholder {
 @media screen and (max-width: 600px) {
   ::root {
     width: calc(100% - 2 * var(--spacing));
+  }
+
+  .halfWidth {
+    width: 80%;
   }
 }
   

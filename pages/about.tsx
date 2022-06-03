@@ -4,7 +4,7 @@ import Image from "next/image";
 import Header from "../components/header";
 import Layout from "../components/layout";
 import Oracle from "../components/oracle";
-import { getRandomExercise } from "../lib/exercises";
+import { getRandomExercise } from "../data/protocols";
 
 const Home: NextPage = () => {
   return (

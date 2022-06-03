@@ -1,11 +1,12 @@
-import { suitImages } from "../lib/exercises";
+import suitMapping from "../data/suitIllustrations";
+import { AsciiRender } from "../lib/textTransform";
 
 type CardSideInternal = exerciseProps & { onCardClick?: () => void; preview?: boolean };
 type CardContentInternal = CardSideInternal & { flipCard: number };
 
 const CardContent: React.FunctionComponent<CardContentInternal> = (props) => {
   return (
-    <div>
+    <div className={props.exercise.suit}>
       {!props.flipCard ? <CardBack {...props} /> : ""}
       {props.flipCard ? <CardFront {...props} /> : ""}
     </div>
@@ -65,10 +66,11 @@ const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }
       ) : null}
       <div className="stack relative">
         <div
-          className="tarotCard coverBG"
-          style={{ backgroundImage: `url(${suitImages[exercise.suit]})` }}
+          className={"tarotCard blackFill center-text border back"}
           onClick={onCardClick}
-        ></div>
+        >
+          <AsciiRender text={suitMapping[exercise.suit]} />
+        </div>
         {!preview ? (
           <div className="horizontal-stack">
             <div className="button" onClick={onCardClick}>

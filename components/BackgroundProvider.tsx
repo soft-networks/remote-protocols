@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
-import bgMapping, { BGWIDTH, BGHEIGHT }  from "./data/bgStrings"
-import { BG_NUM_STAGES, BG_TRANSITION_TIME } from "./data/times";
+import bgMapping from "../data/backgrounds"
+import { BG_NUM_STAGES, BG_TRANSITION_TIME } from "../data/times";
+import { AsciiRender, BGWIDTH } from "../lib/textTransform";
 
 
 /* Create a context that accepts a background ID and just returns a string */
@@ -79,11 +80,7 @@ const BackgroundProvider: React.FC = ({children}) => {
         <div className="fullBleed center">
         {children}
           <div className="fullBleed absolute center">
-           <pre>
-             <code>
-               {bgStringCurrent}
-             </code>
-           </pre>
+            <AsciiRender text={bgStringCurrent} />
           </div>
         </div>
       </BackgroundContext.Provider>

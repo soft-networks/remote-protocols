@@ -1,13 +1,41 @@
 .tarotCard {
   --aspect: 1.72;
-  --cardHeight: min(60vh, 500px);
-  --cardWidth: calc(var(--cardHeight) / var(--aspect));
+  --cardPadding: var(--s-1);
+  --cardHeight: calc(23 * 1em + 2* var(--cardPadding));
+  --cardWidth: calc(29ch + 2* var(--cardPadding));
   height: var(--cardHeight);
+  min-height: var(--cardHeight);
   width: var(--cardWidth);
   position: relative;
-  perspective: 1000px;
+  line-height: 1.4;
+  padding: var(--cardPadding);
+}
 
-    
+.astral .tarotCard {
+  --light: #ece3fc;
+}
+
+.weave .tarotCard {
+
+  --light: #afdbbb;
+}
+
+.flow .tarotCard {
+
+  --light: #c9dbaf;
+}
+
+.chime .tarotCard {
+  --light: #dbafc6;
+}
+.tarotCard pre code {
+  color: var(--light);
+}
+
+.tarotCard.lightFill {
+  background: #dcf9ff;
+  color: #10163b;
+  border: 1px solid var(--light);
 }
 
 .tarotCard .contentContainer {
@@ -16,14 +44,7 @@
   width: 100%;
   height: 100%;
   position: absolute;
-
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
   
-
-  
-
 }
 .glow {
   box-shadow: 0px var(--s1) var(--s4) rgba(0,0,0,0.2), 0px var(--s-1) var(--s-1) rgba(0,0,0,0.1);

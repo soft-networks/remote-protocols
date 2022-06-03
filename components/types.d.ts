@@ -1,4 +1,4 @@
-type Suit = "A" | "B" | "C" | "D";
+type Suit = "chime" | "weave" | "astral" | "flow";
 interface Rating {
   intimacy: number;
   effort: number; 

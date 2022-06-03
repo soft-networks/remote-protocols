@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { getRandomExercise } from "../lib/exercises";
-import CardDetail from "./CardDetail";
-import CardContent from "./CardContent";
-import { useSetBackgroundID } from "./backgrounds";
-import { OracleCompletedText, OraclePromptText, OracleUpdatingText, textToP } from "./data/fgStrings";
-import { BG_TRANSITION_TIME, PER_ORACLE_TEXT_TIME } from "./data/times";
+import { getRandomExercise } from "../data/protocols";
+import { useSetBackgroundID } from "./BackgroundProvider";
+import { OracleCompletedText, OraclePromptText, OracleUpdatingText } from "../data/prompts";
+import { BG_TRANSITION_TIME, PER_ORACLE_TEXT_TIME } from "../data/times";
+import { textToP } from "../lib/textTransform";
 
 
 const Oracle: React.FC = () => {

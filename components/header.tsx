@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Logo from "./logo";
+import { useCallback, useEffect, useState } from "react";
+import { LOGO_FLICKER_TIME } from "../data/times";
 
 const Header: React.FC = () => {
 
@@ -29,6 +30,30 @@ const ActiveLink : React.FC<{href: string, text: string}> = ({href, text}) => {
   return (
     <span className={classNames({ active: asPath == href })}>
       <Link href={href}>{text}</Link>
+    </span>
+  )
+}
+
+const Logo: React.FC = () => {
+
+  let [one, setOne] = useState("1");
+
+  const flicker = useCallback(() => {
+    if (Math.random() > 0.5) {
+      setOne("_");
+      setTimeout(() => setOne("1"), 300);
+    }
+  }, [setOne]);
+
+  useEffect(() => {    
+    flicker();
+    let interval = setInterval(flicker, LOGO_FLICKER_TIME);
+    return () => clearInterval(interval);
+  }, [flicker])
+
+  return (
+    <span>
+      1:{one}
     </span>
   )
 }

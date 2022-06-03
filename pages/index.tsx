@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import bgRender from "../components/backgrounds";
+import bgRender from "../components/BackgroundProvider";
 import Layout from "../components/layout";
 import Oracle from "../components/oracle";
 
