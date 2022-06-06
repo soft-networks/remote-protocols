@@ -3,6 +3,7 @@ import { m } from "framer-motion";
 import { useRouter } from "next/router";
 import BackgroundProvider from "./BackgroundProvider";
 import Header from "./header";
+import React from "react";
 
 
 const Layout: React.FC<{ pageName?: string }> = ({ children, pageName }) => {
@@ -14,11 +15,9 @@ const Layout: React.FC<{ pageName?: string }> = ({ children, pageName }) => {
         <title>{pageName || "intimate protocols"} </title>
       </Head>
 
-      <div className="stack fullBleed">
-          <Header />
-          <BackgroundProvider>
-            {children}
-          </BackgroundProvider>
+      <div className="fullBleed stack:noGap">
+        <Header />
+        <BackgroundProvider>{children}</BackgroundProvider>
       </div>
     </main>
   );

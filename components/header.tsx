@@ -8,17 +8,21 @@ const Header: React.FC = () => {
 
 
   return (
-    <div className="fullWidth center padded:s1">
-      <div className="center-text">
-        <div>
+    <div className="fullWidth padded:s1">
+      <div className="stack:custom" style={{ "--stackSpacing": "var(--s-2)" } as React.CSSProperties}>
+        <div className="center-text">
           <Logo />
         </div>
-        <div>PROTOCOLS FOR REMOTE CONNECTION</div>
-        <div className="horizontal-stack center">
-          <ActiveLink href="/" text="ask the wizard"/>
-          <ActiveLink href="/all" text="browse cards"/>
-          <ActiveLink href="/about" text="about the project"/>
+        <div className="center-text" style={{ marginBlockStart: "var(--s1)" }}>
+          protocols for remote connection
         </div>
+        <nav className="horizontal-stack halfWidth centerh center-text">
+          <ActiveLink href="/" text="ask the wizard" />
+          <span> ⟡ </span>
+          <ActiveLink href="/all" text="browse cards" />
+          <span> ⟡ </span>
+          <ActiveLink href="/about" text="about this project" />
+        </nav>
       </div>
     </div>
   );
@@ -28,7 +32,7 @@ const ActiveLink : React.FC<{href: string, text: string}> = ({href, text}) => {
   const { asPath } = useRouter()
 
   return (
-    <span className={classNames({ active: asPath == href })}>
+    <span className={classNames({ active: asPath == href }, 'center-text')}>
       <Link href={href}>{text}</Link>
     </span>
   )

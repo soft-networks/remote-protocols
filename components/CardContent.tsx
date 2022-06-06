@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CardIntroText } from "../data/prompts";
 import suitMapping from "../data/suitIllustrations";
 import { AsciiRender, textToP } from "../lib/textTransform";
+import copy from "copy-to-clipboard"
 
 type CardSideInternal = exerciseProps & { onCardClick?: () => void; preview?: boolean };
 type CardContentInternal = CardSideInternal & { flipCard: number };
@@ -52,9 +53,16 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
     }
     return stars;
   };
+  const [wasCopied, setWasCopied] = useState(false);
+
+  useEffect(() => {
+    if (wasCopied) {
+      setTimeout(() => setWasCopied(false), 2000);
+    }
+  }, [wasCopied])
   return (
     <>
-      <div className="tarotCard padded stack lightFill" onClick={onCardClick}>
+      <div className="tarotCard padded stack lightFill centerh" onClick={onCardClick}>
         <div> {exercise.name} </div>
         <div className="flex-1"> {textToP(exercise.text.split("\n"))} </div>
         <div className="align-end horizontal-stack fullWidth">
@@ -64,17 +72,22 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
       </div>
       {!preview ? (
         <CardActionWrapper>
-          <p>
-            <span className="button" onClick={(e) => alert(window.location.host + "/" + exercise.id)}>
-              share
-            </span>{" "}
-            this card with your peer
-          </p>
+          {!wasCopied ? (
+            <p>
+              {" "}
+              <span className="button" onClick={(e) => copy(window.location.host + "/" + exercise.id + "?share=true", {onCopy:() => setWasCopied(true)})}>
+                share
+              </span>{" "}
+              this card with your peer{" "}
+            </p>
+          ) : (
+            <p> link to the card was copied to your clipboard! </p>
+          )}
           <p>
             <span className="button" onClick={() => alert("todo")}>
               reflect
             </span>{" "}
-            on this protocol afterwards to note level of intimacy and effort
+            on this protocol afterwards to note level of intimacy (#) and effort (@)
           </p>
         </CardActionWrapper>
       ) : null}
@@ -85,14 +98,14 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
 const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }) => {
   return (
     <>
-      <div className={"tarotCard blackFill center-text border back"} onClick={onCardClick}>
+      <div className={"tarotCard blackFill center-text border back centerh"} onClick={onCardClick}>
         <AsciiRender text={suitMapping[exercise.suit]} />
       </div>
       {!preview ? (
         <CardActionWrapper>
           <div>
             <span className="button" onClick={onCardClick}>
-              FLIP THE CARD
+              FLIP CARD
             </span>{" "}
             to reveal
           </div>

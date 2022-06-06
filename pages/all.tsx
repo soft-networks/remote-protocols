@@ -14,11 +14,21 @@ const All: NextPage = () => {
 
   return (
     <Layout pageName="all protocols">
-      <div className="fullBleed center stack">
-        <div className="wide center-text " style={{marginTop: "var(--s3)"}}>
-          <p> scroll down to review all the protocols we have collected so far. to submit your own protocol, click here</p>
+      <div className="stack align:center">
+        <div className="center-text wide">
+          <p>
+            {" "}
+            scroll down to review all the protocols we have collected so far. to submit your own protocol,{" "}
+            <a
+              href="mailto:aliceyuanzhang@riseup.net ?cc=hello@softnet.works&subject=An%20idea%20for%20a%20remote%20connection%20protocol"
+              target="_blank"
+              rel="noreferrer"
+            >
+              send us an email.
+            </a>
+          </p>
         </div>
-        <div className="halfWidth fullHeight grid padded">
+        <div className="centerh halfWidth grid padded">
           {getAllExercises().map((e, i) => (
             <CardPreview exercise={e} key={"card-" + e.name} i={i} />
           ))}
