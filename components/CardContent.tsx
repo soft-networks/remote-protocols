@@ -75,7 +75,12 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
           {!wasCopied ? (
             <p>
               {" "}
-              <span className="button" onClick={(e) => copy(window.location.host + "/" + exercise.id + "?share=true", {onCopy:() => setWasCopied(true)})}>
+              <span
+                className="button"
+                onClick={(e) =>
+                  copy(window.location.host + "/" + exercise.id) && setWasCopied(true)
+                }
+              >
                 share
               </span>{" "}
               this card with your peer{" "}
