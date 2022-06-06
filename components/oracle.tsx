@@ -4,7 +4,7 @@ import { getRandomExercise } from "../data/protocols";
 import { useSetBackgroundID } from "./BackgroundProvider";
 import { OracleCompletedText, OraclePromptText, OracleUpdatingText } from "../data/prompts";
 import { BG_TRANSITION_TIME, PER_ORACLE_TEXT_TIME } from "../data/times";
-import { textToP } from "../lib/textTransform";
+import { PromptDialog, UpdatingOracleText } from "./TextLayouts";
 
 
 const Oracle: React.FC = () => {
@@ -20,7 +20,7 @@ const Oracle: React.FC = () => {
         router.push("/" + exercise.id);
         return <span> ... </span>;
       case "INITIAL":
-        return <PromptDialog onPromptComplete={() => setStatus("SUMMONED")} />
+        return <OracleAnimation onPromptComplete={() => setStatus("SUMMONED")} />
       default:
       case "COMPLETE":
         return null;
@@ -30,7 +30,8 @@ const Oracle: React.FC = () => {
   return displayOracle();
 };
 
-const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplete}) => {
+
+const OracleAnimation: React.FC<{onPromptComplete: () => void}> = ({onPromptComplete}) => {
 
   const [stage, setStage] = useState<number>(0);
   const setBGID = useSetBackgroundID();
@@ -41,11 +42,16 @@ const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplet
       case 0:
         setBGID("home");
         break;
+      case 0.5: 
+        setBGID("stars");
+        break;
       case 1: 
         setBGID("dots");
         break;
       case 2: 
-        setBGID("galaxy");
+        setBGID("galaxy0");
+        setTimeout(() => setBGID("galaxy1"), PER_ORACLE_TEXT_TIME)
+        setTimeout(() => setBGID("galaxy2"), 2 * PER_ORACLE_TEXT_TIME)
         break;
       case 3: 
         setBGID("dots");
@@ -63,23 +69,23 @@ const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplet
     switch (stage) {
       case 0: {
         return (
-          <div className="stack narrow grayFill border padded:s2">
-            {textToP(OraclePromptText)}
-            <span className="button center" onClick={() => setStage(1)}>
-              request a protocol
-            </span>
-          </div>
+          <PromptDialog onPromptClicked={() => setStage(0.5)} promptText={"→"} textStrings={OraclePromptText[0]} />
+        );
+      }
+      case 0.5: {
+        return (
+          <PromptDialog onPromptClicked={() => setStage(1)} promptText={"begin"} textStrings={OraclePromptText[1]} />
         );
       }
       case 1: 
         return <UpdatingOracleText onAnimationComplete={() => setStage(2)} textStrings={OracleUpdatingText} key="dots"/>
-      case 2: 
+      case 2:
         return (
           <UpdatingOracleText
             onAnimationComplete={() => setStage(3)}
             textStrings={[[""]]}
             key="galaxy"
-            timePerStage={BG_TRANSITION_TIME + 2 * PER_ORACLE_TEXT_TIME}
+            timePerStage={3 * PER_ORACLE_TEXT_TIME}
           />
         );
       case 3: 
@@ -92,33 +98,6 @@ const PromptDialog: React.FC<{onPromptComplete: () => void}> = ({onPromptComplet
   return displayText 
 };
 
-
-const UpdatingOracleText: React.FC<{
-  textStrings: string[][];
-  onAnimationComplete: () => void;
-  timePerStage?: number;
-}> = ({ textStrings, onAnimationComplete, timePerStage = PER_ORACLE_TEXT_TIME }) => {
-  let [textStage, setTextStage] = useState<number>(0);
-  let [activeText, setActiveText] = useState<string[]>([]);
-
-  useEffect(() => {
-    // console.log("text stage", textStage, textStrings);
-
-    if (textStage >= textStrings.length) {
-      onAnimationComplete();
-      return;
-    }
-
-    setActiveText(textStrings[textStage]);
-  }, [textStage, textStrings, onAnimationComplete]);
-
-  useEffect(() => {
-    let interval = setInterval(() => setTextStage((t) => t + 1), timePerStage);
-    return () => clearInterval(interval);
-  }, [timePerStage]);
-
-  return textToP(activeText);
-};
 
 
 export default Oracle;

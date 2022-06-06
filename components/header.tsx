@@ -10,14 +10,14 @@ const Header: React.FC = () => {
   return (
     <div className="fullWidth center padded:s1">
       <div className="center-text">
-        <p>
+        <div>
           <Logo />
-        </p>
-        <p>PROTOCOLS FOR REMOTE CONNECTION</p>
+        </div>
+        <div>PROTOCOLS FOR REMOTE CONNECTION</div>
         <div className="horizontal-stack center">
-          <ActiveLink href="/" text="oracle"/>
-          <ActiveLink href="/all" text="all cards"/>
-          <ActiveLink href="/about" text="about"/>
+          <ActiveLink href="/" text="ask the wizard"/>
+          <ActiveLink href="/all" text="browse cards"/>
+          <ActiveLink href="/about" text="about the project"/>
         </div>
       </div>
     </div>

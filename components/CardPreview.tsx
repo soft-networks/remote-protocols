@@ -12,7 +12,7 @@ const CardPreview : React.FC<exerciseProps & {i?: number}> = ( props) => {
   const [delayPassed, setDelayPassed] = useState(false);
 
   useEffect(() => {
-    let timeout = setTimeout(() => setDelayPassed(true), 500 * ( (props.i || 0) + 1));
+    let timeout = setTimeout(() => setDelayPassed(true), 1000 * ( (props.i || 0) + 1));
     return () => clearTimeout(timeout);
   }, [setDelayPassed, props.i])
 

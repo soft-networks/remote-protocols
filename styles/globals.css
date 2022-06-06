@@ -1,4 +1,3 @@
-
 :root {
   --ratio: 1.4;
   --s0: 1em;
@@ -22,17 +21,22 @@
   --white: white;
   --contrast: pink;
 
-  
+
 
 }
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-html, body, main , #__next{
-  width: 100%; height: 100%;
+html,
+body,
+main,
+#__next {
+  width: 100%;
+  height: 100%;
 }
 
 body {
@@ -43,7 +47,8 @@ body {
 
 }
 
-code, pre {
+code,
+pre {
   line-height: 1.0;
   font-size: inherit;
   font-family: 'Share Tech Mono', monospace;
@@ -62,24 +67,29 @@ a {
   color: inherit;
   text-decoration: underline;
 }
+
 .active a {
-  color : var(--white);
+  color: var(--white);
   text-decoration: none;
 }
 
-a:hover, .button:hover {
+a:hover,
+.button:hover {
   color: var(--light);
   cursor: pointer;
 }
+
 .button {
   text-transform: uppercase;
   color: var(--white);
 }
+
 .button::before {
   content: "[";
   text-decoration: none;
   display: inline-block;
 }
+
 .button::after {
   content: "]";
   text-decoration: none;
@@ -90,6 +100,7 @@ a:hover, .button:hover {
 .noEvents {
   pointer-events: none;
 }
+
 .hasEvents {
   pointer-events: all;
 }
@@ -97,22 +108,28 @@ a:hover, .button:hover {
 .padded {
   padding: var(--spacing);
 }
+
 .padded\:s1 {
   padding: var(--s1);
 }
+
 .padded\:s2 {
   padding: var(--s2);
 }
-.padded\:s-1{
+
+.padded\:s-1 {
   padding: var(--s-1);
 }
+
 .marginTop {
-  margin-top:  var(--spacing);
+  margin-top: var(--spacing);
 }
+
 .border {
   border: 1px solid var(--light);
-  
+
 }
+
 .button {
   display: inline-block;
 }
@@ -123,6 +140,7 @@ a:hover, .button:hover {
   height: 100%;
   position: relative;
 }
+
 .fullBleed.absolute {
   position: absolute;
   top: calc(-1 * var(--s0));
@@ -132,64 +150,73 @@ a:hover, .button:hover {
   max-height: calc(100% + var(--s0));
   overflow: hidden;
 }
+
 .relative {
   position: relative;
 }
+
 .containBG {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .coverBG {
   background-color: var(--light);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .fullHeight {
   height: 100%;
 }
+
 .fullWidth {
   width: 100%;
-}
-
-.floatingText {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, calc(-100% - var(--s2)));
 }
 
 .narrow p {
   width: 32ch;
   z-index: 2;
   max-width: 90vw;
-} 
+}
 
 p {
   max-width: min(42ch, 90vw);
+}
+
+.wide p {
+  max-width: min(56ch, 90vw)
 }
 
 
 .clickHover {
   cursor: pointer;
 }
+
 .halfWidth {
   width: max(60%, calc(600px + 2* var(--spacing)));
   position: relative;
 }
+
 .whiteFill {
   background: var(--white);
 }
+
 .lightFill {
   background: var(--light);
   color: var(--black);
 }
+
 .grayFill {
   background: var(--gray);
 }
+
 .blackFill {
   background: var(--black);
 }
+
 .contrastFill {
   background: var(--contrast);
   color: var(--gray)
@@ -199,20 +226,32 @@ p {
 .caption {
   font-size: var(--s-1);
 }
+
 .noOverflow {
   overflow: hidden;
 }
+
 .noOverflowX {
   overflow: hidden;
 }
+
 .hide {
   display: none;
 }
-.center {
+
+.center  {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
 }
+
+
+.align-start\:vertical {
+  display: flex;
+  align-items: flex-start;
+}
+
 .center-text {
   text-align: center;
 }
@@ -220,31 +259,48 @@ p {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--stackSpacing);
+  gap: var(--s0);
   justify-content: center;
 }
 
 
 
 
-.stack, .stack\:noGap {
-  display: flex; 
+.stack,
+.stack\:noGap,
+.stack\:s-1,
+.stack\:s1,
+.stack\:s2 {
+  display: flex;
   flex-direction: column;
   --stackSpacing: var(--s0);
 }
 
-.stack\:noGap > * + * {
-  margin-top: 0;
-} 
-
-
-.stack > * + * {
+.stack>*+* {
   margin-top: var(--stackSpacing);
 }
+
+.stack\:noGap>*+* {
+  margin-top: 0;
+}
+
+.stack\:s-1>*+* {
+  margin-top: var(--s-1);
+}
+
+.stack\:s1>*+* {
+  margin-top: var(--s1);
+}
+
+.stack\:s2>*+* {
+  margin-top: var(--s2);
+}
+
 
 .stack .align-end {
   margin-top: auto;
 }
+
 .horizontal-stack .align-end {
   margin-left: auto;
 }
@@ -256,7 +312,15 @@ p {
   --stackSpacing: var(--s0);
 }
 
-.horizontal-stack > * + * {
+
+
+
+.horizontal-stack > *:not(:first-child)::before {
+  content: "⟡";
+  margin-right: var(--stackSpacing);
+}
+
+.horizontal-stack>*+* {
   margin-left: var(--stackSpacing);
 }
 
@@ -271,6 +335,7 @@ p {
 input {
   all: unset;
 }
+
 input::placeholder {
   color: inherit;
 }
@@ -284,20 +349,19 @@ input::placeholder {
     width: 80%;
   }
 
-  .floatingText {
-    transform: translate(-50%, calc(-100% - var(--s-2)));
-    --stackSpacing: 0;
-  }
-
-  .center-mobilefill {
-    margin: var(--s0);
-    margin-top: 120px;
-  }
-  .floatingText p {
-    width: max-content;
-  }
   .padded\:s1 {
     padding: var(--s0);
   }
+
+  .stack\:s2>*+* {
+    margin-top: var(--s1);
+  }
+
+  .center div.dontOverflow {
+    max-height: 100%;
+    border: none;
+  }
+  .tarotCardContainer {
+    margin-top: var(--s2);
+  }
 }
-  

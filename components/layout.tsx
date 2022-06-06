@@ -14,7 +14,7 @@ const Layout: React.FC<{ pageName?: string }> = ({ children, pageName }) => {
         <title>{pageName || "intimate protocols"} </title>
       </Head>
 
-      <div className="stack:noGap fullBleed">
+      <div className="stack fullBleed">
           <Header />
           <BackgroundProvider>
             {children}

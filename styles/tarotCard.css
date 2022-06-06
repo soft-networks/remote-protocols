@@ -1,14 +1,21 @@
-.tarotCard {
+.tarotCardContainer {
   --aspect: 1.72;
   --cardPadding: var(--s-1);
   --cardHeight: calc(23 * 1em + 2* var(--cardPadding));
   --cardWidth: calc(29ch + 2* var(--cardPadding));
+}
+.tarotCard {
+
   height: var(--cardHeight);
   min-height: var(--cardHeight);
   width: var(--cardWidth);
   position: relative;
   line-height: 1.4;
   padding: var(--cardPadding);
+}
+.tarotCardContainer .stack\:s-1 {
+  min-height: var(--s5);
+  max-height: var(--s5);
 }
 
 .astral .tarotCard {
@@ -28,6 +35,9 @@
 .chime .tarotCard {
   --light: #dbafc6;
 }
+
+
+
 .tarotCard pre code {
   color: var(--light);
 }
@@ -48,12 +58,6 @@
 }
 .glow {
   box-shadow: 0px var(--s1) var(--s4) rgba(0,0,0,0.2), 0px var(--s-1) var(--s-1) rgba(0,0,0,0.1);
-}
-
-.tarotCard .contentContainer * {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
 }
 
 

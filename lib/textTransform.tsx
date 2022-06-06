@@ -7,9 +7,9 @@ export const RAND_DENSITY = 0.99;
 
 export const textToP = (text: string[]) => {
   return (
-    <div className="stack center-text">
+    <div className="stack">
       {text.map((t, i) => (
-        <p key={"line-" + i} className="grayFill">{t}</p>
+        <p key={"line-" + i}>{t}</p>
       ))}
     </div>
   );

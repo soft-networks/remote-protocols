@@ -1,5 +1,7 @@
+import React from "react";
+import { CardIntroText } from "../data/prompts";
 import suitMapping from "../data/suitIllustrations";
-import { AsciiRender } from "../lib/textTransform";
+import { AsciiRender, textToP } from "../lib/textTransform";
 
 type CardSideInternal = exerciseProps & { onCardClick?: () => void; preview?: boolean };
 type CardContentInternal = CardSideInternal & { flipCard: number };
@@ -7,10 +9,39 @@ type CardContentInternal = CardSideInternal & { flipCard: number };
 const CardContent: React.FunctionComponent<CardContentInternal> = (props) => {
   return (
     <div className={props.exercise.suit}>
-      {!props.flipCard ? <CardBack {...props} /> : ""}
-      {props.flipCard ? <CardFront {...props} /> : ""}
+      {!props.flipCard ? (
+        <CardWrapper {...props}>
+          <CardBack {...props} />
+        </CardWrapper>
+      ) : (
+        ""
+      )}
+      {props.flipCard ? (
+        <CardWrapper {...props}>
+          <CardFront {...props} />
+        </CardWrapper>
+      ) : (
+        ""
+      )}
     </div>
   );
+};
+
+const CardWrapper: React.FC<CardSideInternal> = ({ preview, children }) => {
+  return (
+    <div className="stack:s1 center:justify tarotCardContainer">
+      {!preview ? (
+        <div className="center-text">
+          <p>{CardIntroText}</p>
+        </div>
+      ) : null}
+      {children}
+    </div>
+  );
+};
+
+const CardActionWrapper: React.FC = ({ children }) => {
+  return <div className="stack:s-1 center-text">{children}</div>;
 };
 
 const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }) => {
@@ -22,65 +53,52 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
     return stars;
   };
   return (
-    <div className="stack">
+    <>
       <div className="tarotCard padded stack lightFill" onClick={onCardClick}>
         <div> {exercise.name} </div>
-        <div className="flex-1"> {exercise.text} </div>
+        <div className="flex-1"> {textToP(exercise.text.split("\n"))} </div>
         <div className="align-end horizontal-stack fullWidth">
           <span> {ratingRenderer("#", exercise.rating.intimacy)} </span>
           <span> {ratingRenderer("@", exercise.rating.effort)} </span>
         </div>
       </div>
       {!preview ? (
-        <div className="horizontal-stack">
-          <div className="button" onClick={onCardClick}>
-            ?
-          </div>
-      
-          {shareButton(exercise)}
-          <div className="button" onClick={() => alert("todo")}>
-            reflect
-          </div>
-        </div>
+        <CardActionWrapper>
+          <p>
+            <span className="button" onClick={(e) => alert(window.location.host + "/" + exercise.id)}>
+              share
+            </span>{" "}
+            this card with your peer
+          </p>
+          <p>
+            <span className="button" onClick={() => alert("todo")}>
+              reflect
+            </span>{" "}
+            on this protocol afterwards to note level of intimacy and effort
+          </p>
+        </CardActionWrapper>
       ) : null}
-    </div>
+    </>
   );
 };
 
 const CardBack: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }) => {
   return (
-    <div>
-      {!preview ? (
-        <div
-          className="center-text stack floatingText"
-        >
-          <p>here is a protocol to connect remotely. both of you perform its steps to connect with each other.</p>
-        </div>
-      ) : null}
-      <div className="stack relative">
-        <div
-          className={"tarotCard blackFill center-text border back"}
-          onClick={onCardClick}
-        >
-          <AsciiRender text={suitMapping[exercise.suit]} />
-        </div>
-        {!preview ? (
-          <div className="horizontal-stack">
-            <div className="button" onClick={onCardClick}>
-              SEE PROTOCOL
-            </div>
-          </div>
-        ) : null}
+    <>
+      <div className={"tarotCard blackFill center-text border back"} onClick={onCardClick}>
+        <AsciiRender text={suitMapping[exercise.suit]} />
       </div>
-    </div>
-  );
-};
-
-const shareButton = (exercise: Exercise) => {
-  return (
-    <div className="button" onClick={(e) => alert(window.location.host + "/" + exercise.id)}>
-      share
-    </div>
+      {!preview ? (
+        <CardActionWrapper>
+          <div>
+            <span className="button" onClick={onCardClick}>
+              FLIP THE CARD
+            </span>{" "}
+            to reveal
+          </div>
+        </CardActionWrapper>
+      ) : null}
+    </>
   );
 };
 
