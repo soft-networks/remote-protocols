@@ -1,7 +1,7 @@
 .tarotCardContainer {
   --aspect: 1.72;
   --cardPadding: var(--s-1);
-  --cardHeight: calc(23 * 1em + 2* var(--cardPadding));
+  --cardHeight: calc(25 * 1em + 2* var(--cardPadding));
   --cardWidth: calc(29ch + 2* var(--cardPadding));
 }
 .tarotCard {
@@ -10,12 +10,15 @@
   min-height: var(--cardHeight);
   width: var(--cardWidth);
   position: relative;
-  line-height: 1.4;
   padding: var(--cardPadding);
 }
-.tarotCardContainer .stack\:s-1 {
+.tarotCardContainer .containHeight {
   min-height: var(--s5);
   max-height: var(--s5);
+}
+
+.tarotCard p {
+  width: 90%;
 }
 
 .astral .tarotCard {

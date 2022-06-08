@@ -31,18 +31,13 @@ const CardContent: React.FunctionComponent<CardContentInternal> = (props) => {
 const CardWrapper: React.FC<CardSideInternal> = ({ preview, children }) => {
   return (
     <div className="stack:s1 center:justify tarotCardContainer">
-      {!preview ? (
-        <div className="center-text">
-          <p>{CardIntroText}</p>
-        </div>
-      ) : null}
       {children}
     </div>
   );
 };
 
 const CardActionWrapper: React.FC = ({ children }) => {
-  return <div className="stack:s-1 center-text">{children}</div>;
+  return <div className="stack:s-1 center-text containHeight">{children}</div>;
 };
 
 const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview }) => {
@@ -62,9 +57,12 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
   }, [wasCopied])
   return (
     <>
-      <div className="tarotCard padded stack lightFill centerh" onClick={onCardClick}>
-        <div> {exercise.name} </div>
-        <div className="flex-1"> {textToP(exercise.text.split("\n"))} </div>
+      <div className="tarotCard padded stack:s2 lightFill centerh" onClick={onCardClick}>
+        <div> Protocol #{exercise.index} </div>
+        <div className="flex-1 stack:s-1">
+          <div className="uppercase"> {exercise.name} </div> 
+          <div>{textToP(exercise.text.split("\n"))}</div>
+        </div>
         <div className="align-end horizontal-stack fullWidth">
           <span> {ratingRenderer("#", exercise.rating.intimacy)} </span>
           <span> {ratingRenderer("@", exercise.rating.effort)} </span>
@@ -77,9 +75,7 @@ const CardFront: React.FC<CardSideInternal> = ({ exercise, onCardClick, preview 
               {" "}
               <span
                 className="button"
-                onClick={(e) =>
-                  copy(window.location.host + "/" + exercise.id) && setWasCopied(true)
-                }
+                onClick={(e) => copy(window.location.host + "/" + exercise.id) && setWasCopied(true)}
               >
                 share
               </span>{" "}

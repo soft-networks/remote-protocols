@@ -8,15 +8,15 @@ const Header: React.FC = () => {
 
 
   return (
-    <div className="fullWidth padded:s1">
-      <div className="stack:custom" style={{ "--stackSpacing": "var(--s-2)" } as React.CSSProperties}>
-        <div className="center-text">
+    <div className="fullWidth padded">
+      <div className="stack" >
+        <div className="center-text" style={{marginBlockStart: "var(--s1)"}}>
           <Logo />
         </div>
-        <div className="center-text" style={{ marginBlockStart: "var(--s1)" }}>
+        <div className="center-text"  style={{marginBlockStart: "0"}}>
           protocols for remote connection
         </div>
-        <nav className="horizontal-stack halfWidth centerh center-text">
+        <nav className="horizontal-stack halfWidth centerh center-text" >
           <ActiveLink href="/" text="ask the wizard" />
           <span> ⟡ </span>
           <ActiveLink href="/all" text="browse cards" />

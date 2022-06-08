@@ -8,13 +8,15 @@ export const OraclePromptText = [
     "if you are missing a faraway peer, the wizard of 1:1 is here to offer a bit of guidance",
     "digital or analog, synchronous or asynchronous the wizard will select a promising protocol for you",
     "this will be an exercise for you and your peer to perform in order to experiment with remote connection together",
+    " ",
+    " ",
     "ready?",
   ],
 ];
 
 export const OraclePromptActionText = [
   "request a protocol",
-  "→",
+  ">",
   "begin"
 ]
 

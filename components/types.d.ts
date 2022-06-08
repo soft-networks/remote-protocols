@@ -9,7 +9,8 @@ interface Exercise {
   name: string,
   text: string,
   rating: Rating,
-  suit: Suit
+  suit: Suit,
+  index: number
 }
 
 interface exerciseProps {

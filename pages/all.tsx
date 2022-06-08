@@ -15,9 +15,8 @@ const All: NextPage = () => {
   return (
     <Layout pageName="all protocols">
       <div className="stack align:center">
-        <div className="center-text wide">
+        <div className="centerh center-text halfWidth padded wide">
           <p>
-            {" "}
             scroll down to review all the protocols we have collected so far. to submit your own protocol,{" "}
             <a
               href="mailto:aliceyuanzhang@riseup.net ?cc=hello@softnet.works&subject=An%20idea%20for%20a%20remote%20connection%20protocol"

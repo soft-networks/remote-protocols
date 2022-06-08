@@ -7,7 +7,7 @@ export const RAND_DENSITY = 0.99;
 
 export const textToP = (text: string[]) => {
   return (
-    <div className="stack">
+    <div className="stack:s-1">
       {text.map((t, i) => (
         <p key={"line-" + i}>{t}</p>
       ))}

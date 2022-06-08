@@ -20,7 +20,7 @@ const Oracle: React.FC = () => {
         return <span> ... </span>;
       case "INITIAL":
         return (
-          <div className="centerh cover">
+          <div className="centerh cover quarterWidth wide">
             <div className="centerv">
               <OracleAnimation onPromptComplete={() => setStatus("SUMMONED")} />
             </div>

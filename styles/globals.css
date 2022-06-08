@@ -99,6 +99,9 @@ p {
 .padded\:s2 {
   padding: var(--s2);
 }
+.padded\:s3 {
+  padding-top: var(--s3);
+}
 
 .padded\:s-1 {
   padding: var(--s-1);
@@ -130,9 +133,12 @@ p {
 }
 
 .halfWidth {
-  max-inline-size: min(60%, 1200px);
+  max-inline-size: min(80%, 1200px);
 }
 
+.quarterWidth {
+  max-inline-size: min(42%, 600px);
+}
 
 .cover {
   display: flex;
@@ -245,7 +251,7 @@ p {
 
 code,
 pre {
-  line-height: 1.0;
+  line-height: 1.1;
   font-size: inherit;
   font-family: 'Share Tech Mono', monospace;
 }
@@ -258,12 +264,11 @@ pre {
 
 a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .active a {
-  color: var(--white);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover,
@@ -274,17 +279,21 @@ a:hover,
 
 .button {
   text-transform: uppercase;
-  color: var(--white);
+}
+.uppercase {
+  text-transform: uppercase;
 }
 
 .button::before {
   content: "[";
+  margin-right: 1ch;
   text-decoration: none;
   display: inline-block;
 }
 
 .button::after {
   content: "]";
+  margin-left: 1ch;
   text-decoration: none;
   display: inline-block;
 }
@@ -354,13 +363,22 @@ input::placeholder {
   color: inherit;
 }
 
+@media screen and (min-width: 1300px)  {
+
+
+  .halfWidth {
+    max-inline-size: min(80%, 1200px);
+  }
+
+}
+
 @media screen and (max-width: 600px) {
   ::root {
     --textWidth: 60vw;
   }
 
-  .halfWidth {
-    max-inline-size: 100%;
+  .halfWidth, .quarterWidth {
+    max-inline-size: 90%;
   }
 
   .padded\:s1 {
