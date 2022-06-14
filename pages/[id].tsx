@@ -1,10 +1,8 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import ProtocolPageInternal from "../components/PageInternal/Protocol";
-import Layout from "../components/Layouts/layout";
+import Layout from "../components/Layouts/Layout";
 
-const ExercisePage: NextPage = () => {
+const ProtocolPage: NextPage = () => {
   return (
     <Layout>
       <ProtocolPageInternal />
@@ -12,4 +10,4 @@ const ExercisePage: NextPage = () => {
   );
 };
 
-export default ExercisePage;
+export default ProtocolPage;

@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Header from "../components/Layouts/header";
-import Layout from "../components/Layouts/layout";
+import Header from "../components/Layouts/Header";
+import Layout from "../components/Layouts/Layout";
 import Oracle from "../components/PageInternal/Oracle";
 import { getRandomExercise } from "../data/protocols";
 

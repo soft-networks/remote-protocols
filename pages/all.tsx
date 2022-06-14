@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useEffect } from "react";
 import { useSetBackgroundID } from "../components/BackgroundProvider";
 import CardPreview from "../components/Card/CardPreview";
-import Layout from "../components/Layouts/layout";
+import Layout from "../components/Layouts/Layout";
 import { getAllExercises } from "../data/protocols";
 
 const All: NextPage = () => {

@@ -1,8 +1,7 @@
 import Head from "next/head";
-import { m } from "framer-motion";
 import { useRouter } from "next/router";
 import BackgroundProvider from "../BackgroundProvider";
-import Header from "./header";
+import Header from "./Header";
 import React from "react";
 
 
