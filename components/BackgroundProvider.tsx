@@ -72,7 +72,7 @@ const BackgroundProvider: React.FC = ({ children }) => {
 
   const BackgroundComponent = (
     <BackgroundContext.Provider value={{ setBGID }}>
-      <div className="flex-1 padded">
+      <div className="flex-1 padded ">
         <div className="center:absolute maxFullScreen noOverflow align:center">
             <AsciiRender text={bgStringCurrent} />
         </div>

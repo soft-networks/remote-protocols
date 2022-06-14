@@ -82,7 +82,7 @@ const exercises: Exercise[] = [
   {
     text: "Send a notification every time you are experiencing a heightened emotion today.",
     name: "I'm Feeling...",
-    id: "i'm-feeling...",
+    id: "im-feeling",
     suit: "chime",
     rating: { intimacy: 3, effort: 3 },
     index: 11

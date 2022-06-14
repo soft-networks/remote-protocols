@@ -55,5 +55,5 @@ export const UpdatingOracleText: React.FC<{
     return () => clearInterval(interval);
   }, [timePerStage]);
 
-  return <div className="center-text">{textToP(activeText)}</div>;
+  return <div className="center-text noSelect">{textToP(activeText)}</div>;
 };

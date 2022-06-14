@@ -65,9 +65,9 @@ body {
 }
 
 
-.maxFullScreen{
-  max-width: 100vw;
-  max-height: 100vh;
+.maxFullScreen {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 
@@ -278,6 +278,15 @@ a:hover,
 .button:hover {
   color: var(--light);
   cursor: pointer;
+}
+
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .button {

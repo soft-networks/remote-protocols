@@ -1,4 +1,4 @@
-export const BGHEIGHT = 60;
+export const BGHEIGHT = 44;
 export const BGWIDTH = 120;
 export const RAND_DENSITY = 0.99;
 
