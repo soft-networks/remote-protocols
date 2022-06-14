@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { getRandomExercise } from "../data/protocols";
-import { useSetBackgroundID } from "./BackgroundProvider";
-import { OracleCompletedText, OraclePromptActionText, OraclePromptText, OracleUpdatingText } from "../data/prompts";
-import { BG_TRANSITION_TIME, PER_ORACLE_TEXT_TIME } from "../data/times";
+import { getRandomExercise } from "../../data/protocols";
+import { useSetBackgroundID } from "../BackgroundProvider";
+import { OracleCompletedText, OraclePromptActionText, OraclePromptText, OracleUpdatingText } from "../../data/prompts";
+import { BG_TRANSITION_TIME, PER_ORACLE_TEXT_TIME } from "../../data/times";
 import { PromptDialog, UpdatingOracleText } from "./TextLayouts";
 
 const Oracle: React.FC = () => {

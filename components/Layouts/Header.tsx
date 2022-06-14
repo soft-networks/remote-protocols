@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { LOGO_FLICKER_TIME } from "../data/times";
+import { LOGO_FLICKER_TIME } from "../../data/times";
 
 const Header: React.FC = () => {
 

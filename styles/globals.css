@@ -160,6 +160,9 @@ p {
   z-index: -1;
   overflow: hidden;
 }
+.higher {
+  z-index: 1
+}
 
 
 .align\:center {

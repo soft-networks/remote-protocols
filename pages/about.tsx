@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import Header from "../components/header";
-import Layout from "../components/layout";
-import Oracle from "../components/oracle";
+import Header from "../components/Layouts/header";
+import Layout from "../components/Layouts/layout";
+import Oracle from "../components/PageInternal/Oracle";
 import { getRandomExercise } from "../data/protocols";
 
 const Home: NextPage = () => {

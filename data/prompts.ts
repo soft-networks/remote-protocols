@@ -30,3 +30,11 @@ export const OracleUpdatingText = [
 export const OracleCompletedText = [["PROTOCOL SELECTED"]];
 
 export const CardIntroText = ["the wizard has selected the following protocol for you and your peer to perform. "];
+
+
+
+export const ReflectionText = [
+  "Reflect on the protocol",
+  "Each protocol demands something different from its peers. Some ask for dedicated time and space, while others are quick and easy to perform. In return the protocol can give you suprising gifts ranging from feelings of deep intimacy to the gesture of a quick check in. ",
+  "Once you have completed the protocol with a peer, we ask that you rate its Intimacy (#) and Effort (@). These reflections are stored anonymously and the average ratings are displayed on this site.",
+];

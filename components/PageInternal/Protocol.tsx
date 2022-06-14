@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { getExerciseByID } from "../data/protocols";
-import CardDetail from "./CardDetail";
+import { getExerciseByID } from "../../data/protocols";
+import CardDetail from "../Card/CardDetail";
 
 const ProtocolPageInternal: React.FC = () => {
   const { query, isReady } = useRouter()

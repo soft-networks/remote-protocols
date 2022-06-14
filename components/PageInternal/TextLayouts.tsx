@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { PER_ORACLE_TEXT_TIME } from "../data/times";
-import { textToP } from "../lib/textTransform";
+import { PER_ORACLE_TEXT_TIME } from "../../data/times";
+import { textToP } from "../../lib/textTransform";
 
 
 interface PromptDialogProps {
@@ -23,13 +23,13 @@ export const PromptDialog = ({
   );
 };
 
-export const ModalDialog = (props: PromptDialogProps) => {
-  return (
-    <div className="fullBleed">
-      <PromptDialog {...props} />
-    </div>
-  )
-}
+export const ratingRenderer = (symbol: string, n: number) => {
+  let stars = [];
+  for (let i = 0; i < n; i++) {
+    stars.push(symbol);
+  }
+  return stars;
+};
 
 export const UpdatingOracleText: React.FC<{
   textStrings: string[][];
