@@ -16,7 +16,7 @@ const exercises: Exercise[] = [
     index: 2
   },
   {
-    text: "I. As you go about your day, notice if something that reminds you of your peer\nII. Make and share a record of it",
+    text: "I. As you go about your day, notice if something reminds you of your peer\nII. Make and share a record of it",
     name: "Forget Me Not",
     id: "forget-me-not",
     suit: "astral",
